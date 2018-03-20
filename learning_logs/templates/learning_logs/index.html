@@ -1,0 +1,19 @@
+{% extends "learning_logs/base.html" %}
+
+
+{% block header %}
+<div class="jumbotron">
+    <h1>Отслеживайте ваше обучение.</h1>
+</div>
+{% endblock header %}
+
+{% block content %}
+<h2>
+    <a href="{% url 'users:register' %}">Зарегистрируйтесь</a> для ведения собственного
+    Борового Журнала, и списка изученных тем.
+</h2>
+<h2>
+    Каждый раз, когда Вы изучили что-то новое, делайте об этом запись.
+</h2>
+
+{% endblock content %}
