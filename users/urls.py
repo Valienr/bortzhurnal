@@ -1,3 +1,6 @@
+# -*- coding: utf-8 -*-
+
+
 """Определяет схемы URL для пользователей"""
 
 from django.conf.urls import url

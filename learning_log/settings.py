@@ -1,3 +1,4 @@
+# -*- coding: utf-8 -*-
 """
 Django settings for learning_log project.
 
@@ -12,7 +13,6 @@ https://docs.djangoproject.com/en/1.8/ref/settings/
 
 # Build paths inside the project like this: os.path.join(BASE_DIR, ...)
 import os
-import django_heroku
 
 BASE_DIR = os.path.dirname(os.path.dirname(os.path.abspath(__file__)))
 
@@ -43,7 +43,6 @@ INSTALLED_APPS = (
     'users',
     # сторонние приложения
     'bootstrap3'
-
 )
 
 MIDDLEWARE_CLASSES = (
@@ -55,9 +54,6 @@ MIDDLEWARE_CLASSES = (
     'django.contrib.messages.middleware.MessageMiddleware',
     'django.middleware.clickjacking.XFrameOptionsMiddleware',
     'django.middleware.security.SecurityMiddleware',
-    # Simplified static file serving.
-    # https://warehouse.python.org/project/whitenoise/
-    'whitenoise.middleware.WhiteNoiseMiddleware',
 )
 
 ROOT_URLCONF = 'learning_log.urls'
@@ -118,19 +114,14 @@ LOGIN_URL = '/users/login/'
 BOOTSTRAP3 = {'include_jquery': True, }
 
 # Настройки Heroku
-# if os.getcwd() == '/app':
-#     import dj_database_url
-#     DATABASES = {'default': dj_database_url.config(default='postgres://localhost')}
-#     # Поддержка заголовка 'X-Forwarded-Proto' для request.is_secure().
-#     SECURE_PROXY_SSL_HEADER = ('HTTP_X_FORWARDED_PROTO', 'https')
-#     # Разрешены все заголовки хостов.
-#     ALLOWED_HOSTS = ['*']
-#     # Конфигурация статических ресурсов
-#     BASE_DIR = os.path.dirname(os.path.abspath(__file__))
-#     STATIC_ROOT = 'staticfiles'
-#     STATICFILES_DIRS = (os.path.join(BASE_DIR, 'static'))
-
-# Simplified static file serving.
-# https://warehouse.python.org/project/whitenoise/
-django_heroku.settings(locals())
-STATICFILES_STORAGE = 'whitenoise.storage.CompressedManifestStaticFilesStorage'
+if os.getcwd() == '/app':
+    import dj_database_url
+    DATABASES = {'default': dj_database_url.config(default='postgres://localhost')}
+    # Поддержка заголовка 'X-Forwarded-Proto' для request.is_secure().
+    SECURE_PROXY_SSL_HEADER = ('HTTP_X_FORWARDED_PROTO', 'https')
+    # Разрешены все заголовки хостов.
+    ALLOWED_HOSTS = ['*']
+    # Конфигурация статических ресурсов
+    BASE_DIR = os.path.dirname(os.path.abspath(__file__))
+    STATIC_ROOT = 'staticfiles'
+    STATICFILES_DIRS = (os.path.join(BASE_DIR, 'static'),)
