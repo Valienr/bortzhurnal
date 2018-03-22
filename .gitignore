@@ -1,2 +1,5 @@
 venv/
 venv1/
+.idea/
+*sqlite3
+

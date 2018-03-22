@@ -9,7 +9,8 @@
         {% csrf_token %}
         {% bootstrap_form form %}
         {% buttons %}
-            <button name="submit" class="btn btn-primary">подтвердить</button>
+            <button name="submit" class="btn btn-primary">опубликовать</button>
+            <label><input type="checkbox"name="display_type" value="displaybox"/>публичная запись</label>
         {% endbuttons %}
 </form>
 {% endblock content %}

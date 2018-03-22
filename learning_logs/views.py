@@ -47,6 +47,9 @@ def new_topic(request):
     else:
         # Отправлены данные POST; обработать данные
         form = TopicForm(request.POST)
+        display_type = request.POST.get("display_type", None)
+        if display_type == True:
+            public = False
         if form.is_valid():
             new_topic = form.save(commit=False)
             new_topic.owner = request.user
@@ -60,7 +63,7 @@ def new_topic(request):
 @login_required
 def new_entry(request, topic_id):
     """Добавляет новую запись по конкретной теме."""
-    topic = Topic.objects.get(id=topic_id)
+    topic = get_object_or_404(Topic, id=topic_id)
     check_topic_owner(request, topic)
     # if topic.owner != request.user:
     #     raise Http404
